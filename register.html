@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="css/signup.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>   
+    body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: url(img/bg.jpg) no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      var un = document.registration.Username.value;
+      var mail = document.registration.Email.value;
+      var phno = document.registration.MobileNumber.value;
+      var pass = document.registration.Password.value;
+      
+   
+      if (un === "" || un ==null) {
+        alert("Please enter your username.");
+        document.registration.Username.focus();
+        return false;
+      }
+      if (mail === ""|| mail ==null) {
+        alert("Please enter your email.");
+        document.registration.Email.focus();
+        return false;
+      }
+      if (phno === ""|| phno ==null) {
+        alert("Please enter your phone number.");
+        document.registration.MobileNumber.focus();
+        return false;
+      }
+      if (pass === "" || pass ==null) {
+        alert("Please enter your password.");
+        document.registration.Password.focus();
+        return false;
+      }
+
+      
+      let isValid = true;
+      
+      
+      if (un.length < 6) {
+        isValid = false;
+        alert("Username must contain at least 6 characters");
+        return false;
+      }
+      
+     
+      if (!mail.includes("@")) {
+        isValid = false;
+        alert("Email must contain @ symbol");
+        return false;
+      }
+      
+    
+      if (phno.length !== 10) {
+        isValid = false;
+        alert("Please enter a valid 10-digit phone number");
+        return false;
+      }
+      
+      // Password validation
+      const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      if (!passwordRegex.test(pass)) {
+        isValid = false;
+        alert("Password must contain at least 8 characters, one uppercase letter, one number, and one special character (@$!%*?&)");
+        return false;
+      }
+      
+      // If all validations pass, you can submit the form
+      if (isValid) {
+        alert("Registration successful");
+        return true;
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <form name="registration" onsubmit="return validateForm();" action="Register.jsp">
+      <h1>Register</h1>
+      <div class="input-box">
+        <input type="text" name="Username" placeholder="Username...">
+        <i class='bx bxs-user'></i>
+      </div>
+
+      <div class="input-box">
+        <input type="text" name="Email" placeholder="Email...">
+        <i><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAl0lEQVR4nMWRMQqDQBBFnx4j4JXSGezTaicYhbQhhxL2IOIBtAvE2iB8l0WyUUnhh8/AzH8MswtHKwQSoNjgRHmrChh3+ObCZ6DdCLbKW12BCMiA3gP1mkfKWxngDTyBk257CRq+9M0Snjd0QKoNuWqq/ih74dkNcFddzswa/MvGheudcO3C5T//HAAX4KGX9Xmax8ofqA9FdmvtprulcQAAAABJRU5ErkJggg=="> </i>
+      </div>
+
+      <div class="input-box">
+        <input type="number" name="MobileNumber" placeholder="Mobile number...">
+        <i><img width="16" height="16" src="https://img.icons8.com/fluency-systems-filled/16/phone.png" alt="phone"/></i>
+      </div>
+
+      <div class="input-box">
+        <input type="password" name="Password" placeholder="Password...">
+        <i class='bx bxs-lock-alt' ></i>
+      </div>
+
+      <br>
+
+      <div class="remember-forgot">
+        <label><input type="checkbox">Remember Me</label>
+      </div>
+
+      <button type="submit" class="btn">Register</button>
+      
+      <br><br>
+      
+      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+    </form>
+  </div>
+</body>
+</html>
